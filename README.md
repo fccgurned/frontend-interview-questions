@@ -84,3 +84,126 @@ console.log(b);
 console.log('hello'.repeatify(3)); // 'hellohellohello'
 ```
 
+```
+// what logs out here?
+
+var fullname = 'John Doe'
+var obj = {
+    fullname: 'Colin Ihrig',
+    prop: {
+        fullname: 'Aurelio De Rosa',
+        getFullName: function() {
+            return this.fullname;
+        }
+    }
+};
+
+console.log(obj.prop.getFullname());
+
+var test = obj.prop.getFullname;
+
+console.log(test());
+
+// now fix it so the last console.log() prints 'Aurelio De Rosa'
+```
+
+```
+// the following recursive code will cause a stack overflow if the array is too large.
+// how can we fix this and still retain the recursive pattern?
+
+var list = readHugeList();
+
+var nextListItem = function() {
+    var item = list.pop();
+
+    if (item) {
+        // process the list item...
+        nextlistItem();
+    }
+};
+```
+
+```
+// what will alert out here?
+
+var a = 'value';
+
+(function() {
+    alert(a);
+    var a = 'value2';
+    })();
+```
+
+```
+// the following code will output 'my name is rex, Woof!' and then 'my name is, Woof!' one second later.
+// fix it so it prints correctly the second time
+
+var Dog = function(name) {
+    this.name = name;
+}
+
+Dog.prototype.bark = function() {
+    console.log('my name is ' + this.name + ', Woof!');
+}
+var rex = new Dog('rex');
+
+rex.bark();
+
+setTimeout(rex.bark, 1000);
+```
+
+```
+// the following code is outputting the array, but it's filled with every number
+// we just want the even numbers. what's wrong?
+
+var evenNumbers = [];
+
+var findEvenNumbers = function(i) {
+    if (i % 2 === 0)
+        console.log(i, 'is an even number, adding to array!');
+        evenNumbers.push(i);
+
+    for (var i = 0; i < 10; i++) {
+        findEvenNumbers(i);
+    }
+}
+
+console.log(evenNumbers);
+//outputs:
+//0 "is an even number, adding to array!"
+//2 "is an even number, adding to array!"
+//4 "is an even number, adding to array!"
+//6 "is an even number, adding to array!"
+//8 "is an even number, adding to array!"
+//[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
+```
+// the following outputs 0, but if 4^2 = 16 and 2^2 = 4,
+// then the result should be 12
+
+var square = function(number) {
+    result = number * number;
+    return result;
+}
+
+result = square(4);
+result2 = square(2);
+difference = result - result2;
+
+console.log(difference);
+```
+
+```
++ Write a function that, when passed an array of numbers, gives you the maximum difference between the largest and smallest number ONLY if the smaller number appears before the largest.
+
+For example, [3, 4, 8, 1] = 5. The smallest number is 3, the largest is 8.
+
+This is a refactored (in presentation, not implementation) of the [Stock Price question on Interview Cake](https://www.interviewcake.com/question/stock-price).
+
++ fizzbuzz
+
++ I was presented with an HTML element with a border, and asked to animate it left to right for the full width of the browser.
+
++ I was presented with another HTML box and asked the center it horizontally and vertically
+```
